@@ -15,7 +15,7 @@ Allowing for leaving the game and returning to menu.
 
 Thoughts:
 Using expo meant I needed to publish the app to allow others to use it.
-Fortunately using expo means its availble for both iOS and Android.
+Fortunately using expo means faster setup for me to test the app ( do not have any apple devices =P ).
 
 # Plan of Attack
 
