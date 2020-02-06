@@ -5,9 +5,10 @@
  */
 
 import React, { useEffect } from 'react';
-import { Text, View, TouchableHighlight, Alert } from 'react-native';
-import { winningCombinations, grid, gameRows } from './gameConstants';
-import gameStyles from './gameStyleSheet';
+import { Alert } from 'react-native';
+import { winningCombinations, grid } from './gameConstants';
+import { buildGameRows } from './helperFunctions';
+import GameBoard from './GameBoard';
 
 type Props = {
   /** current player piece, either X or O */
@@ -33,47 +34,20 @@ type Props = {
  * GameBoard
  * Player Pieces
  */
-const GameBoard = ({
-  playerPiece,
-  switchPiece,
+const GameBoardContainer = ({
   moveList,
-  setMoveList,
   moveCount,
-  setMoveCount,
   resetGame,
   leaveAndReset,
+  playerPiece,
+  setMoveList,
+  switchPiece,
+  setMoveCount,
 }: Props) => {
   // checks if winner has been made after each move
   useEffect(() => {
     isThereAWinner(moveList);
   }, [moveCount]);
-
-  // callback to build each individual block in the game
-  const buildBlocks = (row: Array<string>, rowIndex: number) => {
-    return row.map((block, index) => {
-      // the array block isn't needed below, only index
-      let gridId = grid[rowIndex][index];
-      return (
-        <TouchableHighlight
-          style={gameStyles.block}
-          key={index}
-          onPress={() => onTurn(rowIndex, index)}
-          underlayColor={'#CCC'}
-        >
-          <Text style={gameStyles.blockText}>{moveList[gridId]}</Text>
-        </TouchableHighlight>
-      );
-    });
-  };
-
-  // callback to build each row of the game
-  const buildGameRows = () => {
-    return gameRows.map((row: Array<string>, index: number) => (
-      <View style={gameStyles.gameRow} key={index}>
-        {buildBlocks(row, index)}
-      </View>
-    ));
-  };
 
   // callback to check whether the move ended up in a winning move
   const isThereAWinner = (moveList: string[]) => {
@@ -116,7 +90,6 @@ const GameBoard = ({
     }
   };
 
-  // callback to update movesList with a piece at the row/column index
   const onTurn = (rowIndex: number, colIndex: number) => {
     if (moveCount < 9) {
       let updatedMoves = moveList;
@@ -140,10 +113,12 @@ const GameBoard = ({
   };
 
   return (
-    <View style={gameStyles.gameContainer}>
-      <View style={gameStyles.gridTable}>{buildGameRows()}</View>
-    </View>
+    <GameBoard
+      buildGameRows={buildGameRows}
+      moveList={moveList}
+      onTurn={onTurn}
+    />
   );
 };
 
-export default GameBoard;
+export default GameBoardContainer;

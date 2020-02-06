@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import GameView from './src/components/GameView';
+import AppContainer from './src/components/App/AppContainer';
 
 export default function App() {
-  return <GameView />;
+  return <AppContainer />;
 }
