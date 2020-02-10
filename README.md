@@ -42,7 +42,3 @@ To view the game, you must download the Expo client on your phone, it is availab
 Once it has been downloaded, you can just go to this https://expo.io/@shhwolf17/Shipt_Tic_Tac_Toe and it should provide the QR code which you use the app to scan the QR then it should be playable. Due to Apple rules, unfortunately iOS phones won't be able to use this application because its just a published application, but Android phones are allowed to use this. Let me know if this doesn't meet the requirements of your code challenge.
 
 If there are issues with the game, it won't download or anything, you can contact me at welborn.austin17@gmail.com and I'll make sure that the expo cli is up and running, since the only way to keep the game working is I have to keep my expo cli up and running on my computer, of course my computer might restart or go to sleep so just email me and I will get it back up and running asap.
-
-# Reflection after Code Challenge
-
-After hearing back, I realized that I could have broken down my components even further, so I broke down all of the components into two separate components, containers and views.  Containers will hold the functionalities and return the view and pass any required props the view needed.  The views would render any UI related components.  This helps increase the modularity of all of my components.
